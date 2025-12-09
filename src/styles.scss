@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+@font-face {
+  font-family: persian;
+  src: url('/fonts/Parastoo.woff2');
+}
+*{
+    font-family: persian;
+}
