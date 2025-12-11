@@ -1,1 +1,24 @@
-<p>login-page works!</p>
+<div>
+    <form (ngSubmit)="check()">
+        <div>
+            <label for="username">نام کاربری</label>
+            <input [(ngModel)]="loginForm.username" type="text" id="username" name="username" placeholder="نام کاربری وارد کنید">
+        </div>
+        <div>
+            <label for="password">رمز عبور</label>
+            <input [(ngModel)]="loginForm.password" type="password" name="password" id="password" placeholder="رمز عبور وارد کنید">
+        </div>
+        <div>
+            <input [(ngModel)]="loginForm.keepMe" type="checkbox" name="keepMe" id="keepMe">
+            <label for="keepMe">مرا به خاطر بسپار</label>
+        </div>
+        <div>
+            <button [disabled]="loginForm.username=='' || loginForm.password==''" type="submit">ورود</button>
+        </div>
+        @if(message!=''){
+            <div>
+                {{message}}
+            </div>
+        }
+    </form>
+</div>
