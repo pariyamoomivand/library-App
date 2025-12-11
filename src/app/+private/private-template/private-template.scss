@@ -1,0 +1,25 @@
+.sidebar{
+    background-color: black;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0.2em;
+    a{
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 0.3em 0.5em;
+        border-radius: 0.3em;
+        cursor: pointer;
+    }
+    a:hover{
+        background-color: darkslategrey;
+    }
+}
+.content{
+    margin-right: 200px;
+    padding: 0.4em;
+}
