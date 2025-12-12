@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-private-template',
-  imports: [],
+  imports: [RouterLink,RouterOutlet],
   templateUrl: './private-template.html',
   styleUrl: './private-template.scss',
 })

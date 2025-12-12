@@ -1,11 +1,11 @@
 <div class="sidebar">
-<a href="">داشبورد</a>
-<a href="">کتابها</a>
-<a href="">اعضا</a>
-<a href="">امانات</a>
-<a href="">گزارشات</a>
+<a routerLink="dashboard">داشبورد</a>
+<a routerLink="books">کتابها</a>
+<a routerLink="members">اعضا</a>
+<a routerLink="borrows">امانات</a>
+<a routerLink="reports">گزارشات</a>
 <a (click)="logoff()">خروج</a>
 </div>
 <div class="content">
-    این یک آزمایش است
+    <router-outlet></router-outlet>
 </div>
