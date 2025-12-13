@@ -1,124 +1,55 @@
-<table>
-    <thead>
-        <tr>
-            <th>شناسه</th>
-            <th>عنوان</th>
-            <th>نویسنده</th>
-            <th>ناشر</th>
-            <th>قیمت</th>
-            <th></th>
-        </tr>
-    </thead>
+@if(action=='list'){
+    <div>
+        <button (click)="add()">افزودن</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>شناسه</th>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>ناشر</th>
+                <th>قیمت</th>
+                <th></th>
+            </tr>
+        </thead>
     <tbody>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
-        <tr>
-            <td>10</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>تست</td>
-            <td>1000</td>
-            <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
-            </td>
-        </tr>
+        @for(book of data;track $index){
+            <tr>
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.writer}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.price}}</td>
+                <td>
+                    <button>ویرایش</button>
+                    <button>حذف</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+}
+@else{
+    <form (ngSubmit)="save()">
+        <div>
+            <input [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
+        </div>
+        <div>
+            <input [(ngModel)]="item.title" type="text" id="title" name="title" placeholder="عنوان">
+        </div>
+        <div>
+            <input [(ngModel)]="item.writer" type="text" id="writer" name="writer" placeholder="نویسنده">
+        </div>
+        <div>
+            <input [(ngModel)]="item.publisher" type="text" id="publisher" name="publisher" placeholder="ناشر">
+        </div>
+        <div>
+            <input [(ngModel)]="item.price" type="number" id="price" name="price" placeholder="قیمت">
+        </div>
+    <div>
+        <button type="submit">تایید</button>
+        <button type="button" (click)="cancel()">انصراف</button>
+    </div>
+</form>
+}
