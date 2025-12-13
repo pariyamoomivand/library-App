@@ -1,1 +1,45 @@
-<p>members-page works!</p>
+@if(action=='list'){
+  <div>
+    <button (click)="add()">افزودن</button>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>شناسه عضویت</th>
+      <th>نام و نام خانوادگی</th>
+      <th>تاریخ عضویت</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(member of data;track $index){
+    <tr>
+      <td>{{ member.id }}</td>
+      <td>{{ member.fullName }}</td>
+      <td>{{ member.dateOfMembership }}</td>
+      <td>
+        <button>ویرایش</button>
+        <button>حذف</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
+@else{
+  <form (ngSubmit)="save()">
+    <div>
+    <input [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه عضویت" />
+  </div>
+  <div>
+    <input [(ngModel)]="item.fullName" type="text" id="fullName" name="fullName" placeholder="نام و نام خانوادگی" />
+  </div>
+  <div>
+    <input [(ngModel)]="item.dateOfMembership" type="text" id="dateOfMembership" name="dateOfMembership" placeholder="تاریخ عضویت" />
+  </div>
+  <div>
+    <button type="submit">تایید</button>
+    <button type="button" (click)="cancel()">انصراف</button>
+  </div>
+</form>
+  }
