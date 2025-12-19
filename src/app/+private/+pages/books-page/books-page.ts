@@ -37,8 +37,16 @@ export class BooksPage implements OnInit {
       price: 0,
     };
   }
+  edit(book: BookItem) {
+    this.item = { ...book };
+    this.action = 'edit';
+  }
   save() {
-    this.booksService.add(this.item);
+    if (this.action == 'add') {
+      this.booksService.add(this.item);
+    } else if (this.action == 'edit') {
+      this.booksService.update(this.item);
+    }
     this.refreshData();
     this.action = 'list';
   }

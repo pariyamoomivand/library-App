@@ -22,7 +22,7 @@
                 <td>{{book.publisher}}</td>
                 <td>{{book.price | number}} تومان</td>
                 <td>
-                    <button>ویرایش</button>
+                    <button (click)="edit(book)">ویرایش</button>
                     <button>حذف</button>
                 </td>
             </tr>

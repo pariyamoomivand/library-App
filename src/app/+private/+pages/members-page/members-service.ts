@@ -18,8 +18,12 @@ export class MembersService {
   list(){ //Read
     return[...this.data];
   }
-  update(){ //Update
-
+  update(member:MemberItem){ //Update
+    const index=this.data.findIndex(m=>m.id==member.id);
+    if(index!=-1){
+      this.data[index].fullName=member.fullName;
+      this.data[index].dateOfMembership=member.dateOfMembership;
+    }
   }
   remove(){ //Delete
 
