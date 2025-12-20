@@ -37,11 +37,18 @@ export class MembersPage implements OnInit {
     this.item = { ...member };
     this.action = 'edit';
   }
+  remove(member:MemberItem){
+    this.item={...member};
+    this.action='remove';
+  }
   save() {
     if (this.action == 'add') {
       this.membersService.add(this.item);
     } else if (this.action == 'edit') {
       this.membersService.update(this.item);
+    }
+    else if (this.action=='remove') {
+      this.membersService.remove(this.item);
     }
     this.refreshData();
     this.action = 'list';

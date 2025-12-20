@@ -27,8 +27,8 @@ export class BooksService {
       this.data[index].price=book.price;
     }
   }
-  remove(){ //Delete
-
+  remove(book:BookItem){ //Delete
+    this.data=this.data.filter(m=>m.id!=book.id);
   }
   //RCUD(Create,Read,Update,Delete)
 }

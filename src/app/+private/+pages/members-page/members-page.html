@@ -1,9 +1,9 @@
 @if(action=='list'){
-  <div>
-    <button (click)="add()">افزودن</button>
-  </div>
-  <table>
-    <thead>
+<div>
+  <button (click)="add()">افزودن</button>
+</div>
+<table>
+  <thead>
     <tr>
       <th>شناسه عضویت</th>
       <th>نام و نام خانوادگی</th>
@@ -19,27 +19,50 @@
       <td>{{ member.dateOfMembership }}</td>
       <td>
         <button (click)="edit(member)">ویرایش</button>
-        <button>حذف</button>
+        <button (click)="remove(member)">حذف</button>
       </td>
     </tr>
     }
   </tbody>
 </table>
+} @else{ 
+@if(action=='remove'){
+  <div class="alert">آیا از حذف این عضو اطمینان دارید؟</div>
 }
-@else{
-  <form (ngSubmit)="save()">
-    <div>
-    <input [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه عضویت" />
+<form (ngSubmit)="save()">
+  <div>
+    <input
+      [disabled]="action == 'edit' || action == 'remove'"
+      [(ngModel)]="item.id"
+      type="number"
+      id="id"
+      name="id"
+      placeholder="شناسه عضویت"
+    />
   </div>
   <div>
-    <input [(ngModel)]="item.fullName" type="text" id="fullName" name="fullName" placeholder="نام و نام خانوادگی" />
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.fullName"
+      type="text"
+      id="fullName"
+      name="fullName"
+      placeholder="نام و نام خانوادگی"
+    />
   </div>
   <div>
-    <input [(ngModel)]="item.dateOfMembership" type="text" id="dateOfMembership" name="dateOfMembership" placeholder="تاریخ عضویت" />
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.dateOfMembership"
+      type="text"
+      id="dateOfMembership"
+      name="dateOfMembership"
+      placeholder="تاریخ عضویت"
+    />
   </div>
   <div>
     <button type="submit">تایید</button>
     <button type="button" (click)="cancel()">انصراف</button>
   </div>
 </form>
-  }
+}

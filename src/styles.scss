@@ -8,3 +8,12 @@ body {
 *{
     font-family: persian;
 }
+.alert{
+  background-color: rgb(245, 195, 195);
+  color: rgb(0, 0, 0);
+  border: 1px solid lightcoral;
+  border-radius: 0.4em;
+  padding: 0.3em;
+  text-align: center;
+  margin: 0.3em;
+}

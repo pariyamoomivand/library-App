@@ -25,8 +25,8 @@ export class MembersService {
       this.data[index].dateOfMembership=member.dateOfMembership;
     }
   }
-  remove(){ //Delete
-
+  remove(member:MemberItem){ //Delete
+    this.data=this.data.filter(b=>b.id!=member.id)
   }
   //CRUD(Create,Read,Update,Delete)
 }

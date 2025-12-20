@@ -41,11 +41,18 @@ export class BooksPage implements OnInit {
     this.item = { ...book };
     this.action = 'edit';
   }
+  remove(book:BookItem){
+    this.item={...book};
+    this.action='remove';
+  }
   save() {
     if (this.action == 'add') {
       this.booksService.add(this.item);
     } else if (this.action == 'edit') {
       this.booksService.update(this.item);
+    }
+    else if (this.action=='remove') {
+      this.booksService.remove(this.item);
     }
     this.refreshData();
     this.action = 'list';
