@@ -2,63 +2,43 @@ import { DecimalPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MembersService } from './members-service';
+import { Thing } from '../../../+shared/+base/base-thing';
+import { BaseCrudPage } from '../../../+shared/+base/bace-crud-page';
+import { BaseService } from '../../../+shared/+base/base-service';
+import { BaceCrudComponent, Column } from '../../../+shared/+base/bace-crud-component/bace-crud-component';
 
 @Component({
   selector: 'app-members-page',
-  imports: [FormsModule, DecimalPipe],
+  imports: [FormsModule, DecimalPipe,BaceCrudComponent],
   templateUrl: './members-page.html',
   styleUrl: './members-page.scss',
 })
-export class MembersPage implements OnInit {
-  membersService = inject(MembersService);
-  data: MemberItem[] = [];
-  action: string = 'list';
-  item: MemberItem = {
-    id: 0,
-    fullName: '',
-    dateOfMembership: '',
-  };
-
-  ngOnInit(): void {
-    this.refreshData();
-  }
-  refreshData() {
-    this.data = this.membersService.list();
-  }
-  add() {
-    this.action = 'add';
-    this.item = {
-      id: 0,
-      fullName: '',
-      dateOfMembership: '',
-    };
-  }
-  edit(member: MemberItem) {
-    this.item = { ...member };
-    this.action = 'edit';
-  }
-  remove(member:MemberItem){
-    this.item={...member};
-    this.action='remove';
-  }
-  save() {
-    if (this.action == 'add') {
-      this.membersService.add(this.item);
-    } else if (this.action == 'edit') {
-      this.membersService.update(this.item);
-    }
-    else if (this.action=='remove') {
-      this.membersService.remove(this.item);
+export class MembersPage extends BaseCrudPage<MemberItem> implements OnInit {
+  ngOnInit(): void {    
+    this.item={
+      fullName:'',
+      address:'',
+      mobile:''
     }
     this.refreshData();
-    this.action = 'list';
   }
-  cancel() {
-    this.action = 'list';
+  override setService= inject(MembersService);
+  override addPrepair(): void {
+    this.item={
+      fullName:'',
+      address:'',
+      mobile:''
+    }
   }
+  memberColumns:Column[]=[
+    {field:'id',title:'شناسه'},
+    {field:'fullName',title:'نام و نام خانوادگی'},
+    {field:'address',title:'آدرس'},
+    {field:'mobile',title:'موبایل'}
+  ]
 }
-export interface MemberItem {
-  id: number;
+export interface MemberItem extends Thing {
   fullName: string;
-  dateOfMembership: string;
+  mobile: string;
+  address: string;
 }

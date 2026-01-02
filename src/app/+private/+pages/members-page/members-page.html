@@ -1,36 +1,14 @@
-@if(action=='list'){
+<my-crud
+  [mystate]="state"
+  [columns]="memberColumns"
+  [mydata]="data"
+  (onCancel)="cancel()"
+  (onAdd)="add()"
+  (onEdit)="edit($event)"
+  (onRemove)="remove($event)"
+  (onSave)="save()"
+>  
 <div>
-  <button (click)="add()">افزودن</button>
-</div>
-<table>
-  <thead>
-    <tr>
-      <th>شناسه عضویت</th>
-      <th>نام و نام خانوادگی</th>
-      <th>تاریخ عضویت</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(member of data;track $index){
-    <tr>
-      <td>{{ member.id }}</td>
-      <td>{{ member.fullName }}</td>
-      <td>{{ member.dateOfMembership }}</td>
-      <td>
-        <button (click)="edit(member)">ویرایش</button>
-        <button (click)="remove(member)">حذف</button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
-} @else{ 
-@if(action=='remove'){
-  <div class="alert">آیا از حذف این عضو اطمینان دارید؟</div>
-}
-<form (ngSubmit)="save()">
-  <div>
     <input
       [disabled]="action == 'edit' || action == 'remove'"
       [(ngModel)]="item.id"
@@ -53,16 +31,21 @@
   <div>
     <input
       [disabled]="action == 'remove'"
-      [(ngModel)]="item.dateOfMembership"
+      [(ngModel)]="item.address"
       type="text"
-      id="dateOfMembership"
-      name="dateOfMembership"
-      placeholder="تاریخ عضویت"
+      id="address"
+      name="address"
+      placeholder="آدرس"
     />
   </div>
   <div>
-    <button type="submit">تایید</button>
-    <button type="button" (click)="cancel()">انصراف</button>
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.mobile"
+      type="text"
+      id="mobile"
+      name="mobile"
+      placeholder="موبایل"
+    />
   </div>
-</form>
-}
+</my-crud>

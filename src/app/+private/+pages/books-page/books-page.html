@@ -1,38 +1,13 @@
-@if(action=='list'){
-<div>
-  <button (click)="add()">افزودن</button>
-</div>
-<table>
-  <thead>
-    <tr>
-      <th>شناسه</th>
-      <th>عنوان</th>
-      <th>نویسنده</th>
-      <th>ناشر</th>
-      <th>قیمت</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(book of data;track $index){
-    <tr>
-      <td>{{ book.id }}</td>
-      <td>{{ book.title }}</td>
-      <td>{{ book.writer }}</td>
-      <td>{{ book.publisher }}</td>
-      <td>{{ book.price | number }} تومان</td>
-      <td>
-        <button (click)="edit(book)">ویرایش</button>
-        <button (click)="remove(book)">حذف</button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
-} @else{ @if(action=='remove'){
-<div class="alert">آیا از حذف این کتاب اطمینان دارید؟</div>
-}
-<form (ngSubmit)="save()">
+<my-crud
+  [mystate]="state"
+  [columns]="booksColumns"
+  [mydata]="data"
+  (onCancel)="cancel()"
+  (onAdd)="add()"
+  (onEdit)="edit($event)"
+  (onRemove)="remove($event)"
+  (onSave)="save()"
+>
   <div>
     <input
       [disabled]="action == 'edit' || action == 'remove'"
@@ -83,9 +58,4 @@
       placeholder="قیمت"
     />
   </div>
-  <div>
-    <button type="submit">تایید</button>
-    <button type="button" (click)="cancel()">انصراف</button>
-  </div>
-</form>
-}
+</my-crud>

@@ -2,67 +2,44 @@ import { Component, inject, OnInit } from '@angular/core';
 import { BooksService } from './books-service';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
+import { Thing } from '../../../+shared/+base/base-thing';
+import { BaseCrudPage } from '../../../+shared/+base/bace-crud-page';
+import { BaceCrudComponent, Column } from '../../../+shared/+base/bace-crud-component/bace-crud-component';
 
 @Component({
   selector: 'app-books-page',
-  imports: [FormsModule, DecimalPipe],
+  imports: [FormsModule, DecimalPipe,BaceCrudComponent],
   templateUrl: './books-page.html',
   styleUrl: './books-page.scss',
 })
-export class BooksPage implements OnInit {
-  booksService = inject(BooksService);
-  data: BookItem[] = [];
-  action: string = 'list';
-  item: BookItem = {
-    id: 0,
-    title: '',
-    writer: '',
-    publisher: '',
-    price: 0,
-  };
-
-  ngOnInit(): void {
-    this.refreshData();
-  }
-  refreshData() {
-    this.data = this.booksService.list();
-  }
-  add() {
-    this.action = 'add';
-    this.item = {
-      id: 0,
-      title: '',
-      writer: '',
-      publisher: '',
-      price: 0,
-    };
-  }
-  edit(book: BookItem) {
-    this.item = { ...book };
-    this.action = 'edit';
-  }
-  remove(book:BookItem){
-    this.item={...book};
-    this.action='remove';
-  }
-  save() {
-    if (this.action == 'add') {
-      this.booksService.add(this.item);
-    } else if (this.action == 'edit') {
-      this.booksService.update(this.item);
-    }
-    else if (this.action=='remove') {
-      this.booksService.remove(this.item);
+export class BooksPage extends BaseCrudPage<BookItem> implements OnInit {
+  ngOnInit(): void {    
+    this.item={
+      title:'',
+      publisher:'',
+      writer:'',
+      price:0
     }
     this.refreshData();
-    this.action = 'list';
   }
-  cancel() {
-    this.action = 'list';
+  override setService = inject(BooksService);
+  override addPrepair(): void {
+    this.item={
+      title:'',
+      publisher:'',
+      writer:'',
+      price:0
+    }
   }
+  booksColumn:Column[]=[
+    {field:'id',title:'شناسه'},
+    {field:'title',title:'عنوان'},
+    {field:'writer',title:'نویسنده'},
+    {field:'publisher',title:'ناشر'},
+    {field:'price',title:'قیمت'}
+  ]
 }
-export interface BookItem {
-  id: number;
+export interface BookItem extends Thing {
   title: string;
   writer: string;
   publisher: string;

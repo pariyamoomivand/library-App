@@ -1,32 +1,21 @@
 import { Injectable } from '@angular/core';
 import { MemberItem } from './members-page';
+import { BaseService } from '../../../+shared/+base/base-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MembersService {
-  data: MemberItem[] = [
-    { id: 1, fullName: 'کاربر1', dateOfMembership: '1404/4/26' },
-    { id: 2, fullName: 'کاربر2', dateOfMembership: '1404/5/26' },
-    { id: 3, fullName: 'کاربر3', dateOfMembership: '1404/5/30' },
-    { id: 4, fullName: 'کاربر4', dateOfMembership: '1404/7/2' },
-    { id: 5, fullName: 'کاربر5', dateOfMembership: '1404/7/9' },
+export class MembersService extends BaseService<MemberItem>{
+  override data: MemberItem[] = [
+    {id:1000,fullName:'لی لی زمانی',address:'همدان',mobile:'0990'},
+    {id:1001,fullName:'فرشته قصبستانی',address:'همدان',mobile:'0990'},
+    {id:1002,fullName:'زی زی رمضانی',address:'همدان',mobile:'0990'}
   ];
-  add(member:MemberItem) { //Create
-    this.data.push(member);
+  override update(book: MemberItem): void;
+  override update(destination: MemberItem, source: MemberItem): void;
+  override update(destination: unknown, source?: unknown): void {
+    destination.address=source.address;
+    destination.mobile=source.mobile;
+    destination.fullName=source.fullName;
   }
-  list(){ //Read
-    return[...this.data];
-  }
-  update(member:MemberItem){ //Update
-    const index=this.data.findIndex(m=>m.id==member.id);
-    if(index!=-1){
-      this.data[index].fullName=member.fullName;
-      this.data[index].dateOfMembership=member.dateOfMembership;
-    }
-  }
-  remove(member:MemberItem){ //Delete
-    this.data=this.data.filter(b=>b.id!=member.id)
-  }
-  //CRUD(Create,Read,Update,Delete)
 }

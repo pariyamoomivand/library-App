@@ -1,0 +1,62 @@
+.primary {
+  background-color: rgb(13, 95, 228);
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  border: none;
+  margin: 0.1em;
+}
+.add {
+  background-color: rgb(6, 49, 120);
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  border: none;
+  margin: 0.1em;
+}
+.edit {
+  background-color: rgb(243, 129, 54);
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  border: none;
+  margin: 0.1em;
+}
+.remove {
+  background-color: rgb(236, 10, 10);
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 0.3em;
+  border: none;
+  margin: 0.1em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    border-bottom: 1px solid gray;
+  }
+  tr:nth-of-type(2n + 1) {
+    background-color: lightgray;
+  }
+  td,
+  th {
+    text-align: center;
+    padding: 0.3em;
+  }
+  th {
+    background-color: gray;
+    color: white;
+  }
+  td:last-of-type {
+    text-align: left;
+  }
+}
+button {
+  background-color: navy;
+  color: white;
+  padding: 0.2em 0.4em;
+  border: none;
+  border-radius: 0.3em;
+  margin: 0.2em;
+}

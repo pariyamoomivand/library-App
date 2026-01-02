@@ -1,0 +1,38 @@
+@if(state=='list'){
+<div>
+  <button class="add" (click)="onAdd.emit()">افزودن</button>
+</div>
+<table>
+  <thead>
+    <tr>
+      @for(item of columns;track $index){
+      <th>{{ item.title }}</th>
+      }
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(item of mydata;track $index){
+    <tr>
+      @for(col of columns;track $index){
+      <td>{{ item[col.field] }}</td>
+      }
+      <td>
+        <button class="edit" (click)="onEdit.emit(item)">ویرایش</button>
+        <button class="remove" (click)="onRemove.emit(item)">حذف</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+} @else{ @if(mystate=='remove'){
+<div class="alert">آیا از حذف این عضو اطمینان دارید؟</div>
+}
+<form (ngSubmit)="(onSave.emit)">
+  <ng-content></ng-content>
+  <div>
+    <button class="primary" (click)="onSave.emit()" type="button">تایید</button>
+    <button (click)="onCancel.emit()" type="button">انصراف</button>
+  </div>
+</form>
+}
