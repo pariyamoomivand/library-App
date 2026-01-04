@@ -8,11 +8,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './bace-crud-component.scss',
 })
 export class BaceCrudComponent {
-  @Input() mystate:string='list';
-  @Output() onCancel=new EventEmitter;
+  @Input() myaction:string='list';
   @Output() onAdd=new EventEmitter;
+  @Output() onCancel=new EventEmitter;
   @Input() columns:Column[]=[];
-  @Input() mydata:any[]=[];
+  @Input() data:any[]=[];
   @Output() onEdit=new EventEmitter<any>;
   @Output() onRemove=new EventEmitter<any>;
   @Output() onSave=new EventEmitter;

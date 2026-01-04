@@ -1,3 +1,3 @@
-export class Thing{
+export interface Thing{
     id?:number;
 }

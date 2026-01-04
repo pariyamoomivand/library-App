@@ -1,9 +1,9 @@
 <my-crud
-  [mystate]="state"
-  [columns]="memberColumns"
-  [mydata]="data"
-  (onCancel)="cancel()"
+  [myaction]="action"
   (onAdd)="add()"
+  (onCancel)="cancel()"
+  [columns]="columns"
+  [data]="data"
   (onEdit)="edit($event)"
   (onRemove)="remove($event)"
   (onSave)="save()"

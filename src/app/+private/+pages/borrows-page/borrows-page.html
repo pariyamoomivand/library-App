@@ -1,1 +1,61 @@
-<p>borrows-page works!</p>
+<my-crud
+  [myaction]="action"
+  (onAdd)="add()"
+  (onCancel)="cancel()"
+  [columns]="columns"
+  [data]="data"
+  (onEdit)="edit($event)"
+  (onRemove)="remove($event)"
+  (onSave)="save()"
+>
+  <div>
+    <input
+      [disabled]="action == 'edit' || action == 'remove'"
+      [(ngModel)]="item.id"
+      type="number"
+      id="id"
+      name="id"
+      placeholder="شناسه"
+    />
+  </div>
+  <div>
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.title"
+      type="text"
+      id="title"
+      name="title"
+      placeholder="عنوان"
+    />
+  </div>
+  <div>
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.writer"
+      type="text"
+      id="writer"
+      name="writer"
+      placeholder="نویسنده"
+    />
+  </div>
+  <div>
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.publisher"
+      type="text"
+      id="publisher"
+      name="publisher"
+      placeholder="ناشر"
+    />
+  </div>
+  <div>
+    <input
+      [disabled]="action == 'remove'"
+      [(ngModel)]="item.price"
+      type="number"
+      id="price"
+      name="price"
+      placeholder="قیمت"
+    />
+  </div>
+</my-crud>

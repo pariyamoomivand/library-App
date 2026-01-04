@@ -1,37 +1,37 @@
-@if(state=='list'){
+@if(myaction=='list'){
 <div>
   <button class="add" (click)="onAdd.emit()">افزودن</button>
 </div>
 <table>
   <thead>
     <tr>
-      @for(item of columns;track $index){
-      <th>{{ item.title }}</th>
+      @for(col of columns;track $index){
+        <th>{{col.title}}</th>
       }
       <th></th>
     </tr>
   </thead>
   <tbody>
-    @for(item of mydata;track $index){
+    @for(i of data;track $index){
     <tr>
       @for(col of columns;track $index){
-      <td>{{ item[col.field] }}</td>
+      <td>{{ i[col.field] }}</td>
       }
       <td>
-        <button class="edit" (click)="onEdit.emit(item)">ویرایش</button>
-        <button class="remove" (click)="onRemove.emit(item)">حذف</button>
+        <button class="edit" (click)="onEdit.emit(i)">ویرایش</button>
+        <button class="remove" (click)="onRemove.emit(i)">حذف</button>
       </td>
     </tr>
     }
   </tbody>
 </table>
-} @else{ @if(mystate=='remove'){
+} @else{ @if(myaction=='remove'){
 <div class="alert">آیا از حذف این عضو اطمینان دارید؟</div>
 }
 <form (ngSubmit)="(onSave.emit)">
   <ng-content></ng-content>
   <div>
-    <button class="primary" (click)="onSave.emit()" type="button">تایید</button>
+    <button class="primary" (click)="onSave.emit()" type="submit">تایید</button>
     <button (click)="onCancel.emit()" type="button">انصراف</button>
   </div>
 </form>
